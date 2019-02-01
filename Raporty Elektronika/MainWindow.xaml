@@ -4,23 +4,140 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Raporty_Elektronika"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+        Title="MainWindow" Height="450" Width="1000" Loaded="Window_Loaded">
+
+
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="17*"/>
-            <ColumnDefinition Width="55*"/>
-        </Grid.ColumnDefinitions>
+
         <TabControl HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch" Grid.ColumnSpan="2">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="TabItem">
+            <TabControl.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Background" Value="#FF34495E"/>
+                </Style>
+
+            </TabControl.Resources>
+            <!--ZLECENIE -->
+            <TabItem Background="#1ABC9C" Foreground="White" Header="ZLECENIE" >
                 <Grid Background="#FFE5E5E5">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="213*"/>
-                        <ColumnDefinition Width="55*"/>
-                    </Grid.ColumnDefinitions>
+                    <TabControl>
+                        <TabItem Header="Szczegółowe dane zlecenia">
+                            
+                        </TabItem>
+                    </TabControl>
+
+                </Grid>
+            </TabItem>
+            <!--KITTING -->
+            <TabItem Header="KITTING">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+            <!--SMT -->
+            <TabItem Header="SMT">
+                <Grid Background="#FFE5E5E5">
+                    <!--RAPORT WYKONANIA -->
+                    <TabControl>
+                        <TabItem Header="Raport wykonania">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="50"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="30"/>
+                                </Grid.RowDefinitions>
+                                <StackPanel Grid.Row="0" HorizontalAlignment="Stretch" Background="#34495E">
+                                    <StackPanel Orientation="Horizontal" Margin="10 5 0 0">
+                                        <TextBlock Margin="5 5 0 0" Foreground="White">Od:</TextBlock>
+                                        <DatePicker></DatePicker>
+                                        <TextBlock Margin="5 5 0 0" Foreground="White">Do:</TextBlock>
+                                        <DatePicker></DatePicker>
+                                        <TextBlock Margin="50 5 0 0" Foreground="White">Produkcja:</TextBlock>
+                                        <CheckBox Margin="5 5 0 0" Foreground="White" IsChecked="True">LG</CheckBox>
+                                        <CheckBox Margin="5 5 0 0" Foreground="White" IsChecked="True">MST</CheckBox>
+                                    </StackPanel>
+                                    
+                                </StackPanel>
+                                <DataGrid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
+                                    
+                                </DataGrid>
+                                <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="#34495E">
+                                    <TextBlock VerticalAlignment="Center" Margin="15 0 0 0" Foreground="White">Suma zaznaczonych:</TextBlock>
+                                </Grid>
+                            </Grid>
+                        </TabItem>
+                        <TabItem Header="Statystyki wydajności"></TabItem>
+                        <TabItem Header="Odpad LED"></TabItem>
+                        <TabItem Header="Użycie Stencili"></TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <!--KONTROLA WZROKOWA -->
+            <TabItem Header="KONTROLA WZROKOWA">
+                <Grid Background="#FFE5E5E5">
+                    <TabControl>
+                        <TabItem Header="Ostatnie NG" ></TabItem>
+                        <TabItem Header="Poziom odpadu">
+                            <StackPanel>
+                                <StackPanel Orientation="Horizontal" Background="#34495E" Height="30">
+                                    <CheckBox VerticalAlignment="Center" Margin="10 0 0 0" Foreground="White">LG</CheckBox>
+                                    <CheckBox VerticalAlignment="Center" Margin="10 0 0 0" Foreground="White">MST</CheckBox>
+                                    <TextBlock VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0">Od:</TextBlock>
+                                    <DatePicker x:Name="dPVIWasteLevelFrom" VerticalAlignment="Center"></DatePicker>
+                                    <TextBlock VerticalAlignment="Center" Foreground="White" Margin="10 0 0 0">Do:</TextBlock>
+                                    <DatePicker x:Name="dPVIWasteLevelTo" VerticalAlignment="Center"></DatePicker>
+                                    <StackPanel Margin="25 0 0 0" Orientation="Horizontal">
+                                        <RadioButton IsChecked="True" Margin="5 0 0 0" VerticalAlignment="Center" Foreground="White">Dziennie</RadioButton>
+                                        <RadioButton Margin="5 0 0 0" VerticalAlignment="Center" Foreground="White">Tygodniowo</RadioButton>
+                                        <RadioButton Margin="5 0 0 0" VerticalAlignment="Center" Foreground="White">Miesięcznie</RadioButton>
+                                    </StackPanel>
+                                    <StackPanel Margin="30 0 0 0" Orientation="Horizontal">
+                                        <RadioButton IsChecked="True" Margin="10 0 0 0" VerticalAlignment="Center" Foreground="White">Skumulowany</RadioButton>
+                                        <RadioButton Margin="10 0 0 0" VerticalAlignment="Center" Foreground="White">Po linii:</RadioButton>
+                                        <ComboBox Margin="10 0 0 0" Width="50">
+                                            <ComboBoxItem>
+                                                <CheckBox>SMT1</CheckBox>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <CheckBox>SMT2</CheckBox>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <CheckBox>SMT3</CheckBox>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <CheckBox>SMT4</CheckBox>
+                                            </ComboBoxItem>
+                                            <ComboBoxItem>
+                                                <CheckBox>SMT5</CheckBox>
+                                            </ComboBoxItem>
+                                        </ComboBox>
+                                    </StackPanel>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                
+                                </StackPanel>
+                            </StackPanel>
+                        </TabItem>
+                        <TabItem Header="Przyczyny odpadu"></TabItem>
+                        <TabItem Header="Analiza po przyczynie"></TabItem>
+                        <TabItem Header="Analiza po modelu"></TabItem>
+                        <TabItem Header="Analiza po operatorze"></TabItem>
+                    </TabControl>
+                </Grid>
+            </TabItem>
+            <!--SERWIS -->
+            <TabItem Header="SERWIS">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+            <!--TEST -->
+            <TabItem Header="TEST">
+                <Grid Background="#FFE5E5E5">
+                </Grid>
+            </TabItem>
+            <!--PAKOWANIE -->
+            <TabItem Header="PAKOWANIE">
+                <Grid Background="#FFE5E5E5">
                 </Grid>
             </TabItem>
         </TabControl>

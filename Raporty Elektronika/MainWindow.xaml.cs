@@ -1,4 +1,5 @@
-﻿using Raporty_Elektronika.Data_Loader;
+﻿using MST.MES;
+using Raporty_Elektronika.Data_Loader;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+
 namespace Raporty_Elektronika
 {
     /// <summary>
@@ -22,13 +24,17 @@ namespace Raporty_Elektronika
     /// </summary>
     /// 
 
+    
 
 
     public partial class MainWindow : Window
     {
+        Dictionary<string, OrderStructureByOrderNo> dataStructoreByOrder = new Dictionary<string, OrderStructureByOrderNo>();
+
         public MainWindow()
         {
             InitializeComponent();
+           
         }
 
         public static class GlobalParameters
@@ -38,7 +44,16 @@ namespace Raporty_Elektronika
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            dPVIWasteLevelFrom.DisplayDate = DateTime.Now.AddDays(-30);
+            dPVIWasteLevelTo.DisplayDate = DateTime.Now;
+        }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            var smt = MST.MES.SqlDataReaderMethods.SMT.GetOrdersByDataReader(90);
+            var testIdToName = MST.MES.SqlDataReaderMethods.LedTest.TesterIdToName();
+            var test = MST.MES.SqlDataReaderMethods.LedTest.GetTestRecords(60, testIdToName);
+            ;
         }
     }
 }

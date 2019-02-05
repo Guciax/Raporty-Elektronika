@@ -22,9 +22,8 @@
             <TabItem Background="#1ABC9C" Foreground="White" Header="ZLECENIE" >
                 <Grid Background="#FFE5E5E5">
                     <TabControl>
-                        <TabItem Header="Szczegółowe dane zlecenia">
-                            
-                        </TabItem>
+                        <TabItem Header="Szczegółowe dane zlecenia"/>
+                        <Calendar Height="100" Width="100"/>
                     </TabControl>
 
                 </Grid>
@@ -56,10 +55,10 @@
                                         <CheckBox x:Name="chSmtLg" Margin="5 5 0 0" Foreground="White" IsChecked="True">LG</CheckBox>
                                         <CheckBox x:Name="chSmtMst" Margin="5 5 0 0" Foreground="White" IsChecked="True">MST</CheckBox>
                                     </StackPanel>
-                                    
+
                                 </StackPanel>
-                                <DataGrid x:Name="bla" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
-                                    
+                                <DataGrid x:Name="gridViewSmtDailyReport" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
+
                                 </DataGrid>
                                 <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="#34495E">
                                     <TextBlock VerticalAlignment="Center" Margin="15 0 0 0" Foreground="White">Suma zaznaczonych:</TextBlock>
@@ -67,7 +66,17 @@
                             </Grid>
                         </TabItem>
                         <TabItem Header="Statystyki wydajności"></TabItem>
-                        <TabItem Header="Odpad LED"></TabItem>
+                        <TabItem Header="Odpad LED">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0">
+
+                                </Grid>
+                            </Grid>
+                        </TabItem>
                         <TabItem Header="Użycie Stencili"></TabItem>
                     </TabControl>
                 </Grid>
@@ -114,7 +123,7 @@
                                     </StackPanel>
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
-                                
+
                                 </StackPanel>
                             </StackPanel>
                         </TabItem>

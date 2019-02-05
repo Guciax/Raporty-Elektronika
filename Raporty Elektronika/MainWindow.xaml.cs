@@ -24,9 +24,6 @@ namespace Raporty_Elektronika
     /// </summary>
     /// 
 
-    
-
-
     public partial class MainWindow : Window
     {
         Dictionary<string, OrderStructureByOrderNo> dataStructoreByOrder = new Dictionary<string, OrderStructureByOrderNo>();
@@ -34,12 +31,11 @@ namespace Raporty_Elektronika
         public MainWindow()
         {
             InitializeComponent();
-           
         }
 
         public static class GlobalParameters
         {
-            public static int daysBackDataKitting = 90;
+            public static readonly int daysBackDataKitting = 90;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

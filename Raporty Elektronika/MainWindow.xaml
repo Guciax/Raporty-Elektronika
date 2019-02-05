@@ -58,7 +58,7 @@
                                     </StackPanel>
                                     
                                 </StackPanel>
-                                <DataGrid Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
+                                <DataGrid x:Name="bla" Grid.Row="1" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Height="Auto">
                                     
                                 </DataGrid>
                                 <Grid Grid.Row="2" HorizontalAlignment="Stretch" Background="#34495E">

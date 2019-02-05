@@ -53,8 +53,8 @@
                                         <TextBlock Margin="5 5 0 0" Foreground="White">Do:</TextBlock>
                                         <DatePicker></DatePicker>
                                         <TextBlock Margin="50 5 0 0" Foreground="White">Produkcja:</TextBlock>
-                                        <CheckBox Margin="5 5 0 0" Foreground="White" IsChecked="True">LG</CheckBox>
-                                        <CheckBox Margin="5 5 0 0" Foreground="White" IsChecked="True">MST</CheckBox>
+                                        <CheckBox x:Name="chSmtLg" Margin="5 5 0 0" Foreground="White" IsChecked="True">LG</CheckBox>
+                                        <CheckBox x:Name="chSmtMst" Margin="5 5 0 0" Foreground="White" IsChecked="True">MST</CheckBox>
                                     </StackPanel>
                                     
                                 </StackPanel>

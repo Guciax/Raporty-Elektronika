@@ -27,7 +27,9 @@ namespace Raporty_Elektronika
 
     public partial class MainWindow : Window
     {
-       OrderStructureByOrderNo.AllOrdersByProcess sqlDataStructoreByOrder = new OrderStructureByOrderNo.AllOrdersByProcess();
+       OrderStructureByOrderNo.dataByProcess sqlDataByProcess = new OrderStructureByOrderNo.dataByProcess();
+        Dictionary<string, OrderStructureByOrderNo.dataByOrder> sqlDataByOrder = new Dictionary<string, OrderStructureByOrderNo.dataByOrder>();
+        Dictionary<int, string> testerIdToName = new Dictionary<int, string>();
 
         public MainWindow()
         {
@@ -44,9 +46,28 @@ namespace Raporty_Elektronika
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            sqlDataStructoreByOrder.Smt = MST.MES.SqlDataReaderMethods.SMT.GetOrdersByDataReader(90);
-            sqlDataStructoreByOrder.VisualInspection = MST.MES.SqlDataReaderMethods.VisualInspection.GetViRecords(90);
-            MainOrderStructure dataStructure = new MainOrderStructure(sqlDataStructoreByOrder);
+            testerIdToName = MST.MES.SqlDataReaderMethods.LedTest.TesterIdToName();
+
+            Stopwatch st = new Stopwatch();
+            st.Start();
+            sqlDataByProcess.Smt = MST.MES.SqlDataReaderMethods.SMT.GetOrdersByDataReader(10);
+            Debug.WriteLine($"smt done:{st.Elapsed}");
+            st.Reset();
+            sqlDataByProcess.VisualInspection = MST.MES.SqlDataReaderMethods.VisualInspection.GetViRecords(10);
+            Debug.WriteLine($"vi done:{st.Elapsed}");
+            st.Reset();
+            sqlDataByProcess.Test = MST.MES.SqlDataReaderMethods.LedTest.GetTestRecords(10, testerIdToName);
+            Debug.WriteLine($"test done:{st.Elapsed}");
+            st.Reset();
+            sqlDataByProcess.Rework = MST.MES.SqlDataReaderMethods.LedRework.GetReworkList
+            Debug.WriteLine($"rework done:{st.Elapsed}");
+            st.Reset();
+            DataMerger.MergeData(ref sqlDataByOrder, null, sqlDataByProcess.Smt, sqlDataByProcess.Test, sqlDataByProcess.VisualInspection, null);
+            Debug.WriteLine($"merge done:{st.Elapsed}");
+            st.Reset();
+            MainOrderStructure dataStructure = new MainOrderStructure(sqlDataByProcess);
+            Debug.WriteLine($"struct done:{st.Elapsed}");
+            st.Reset();
             ;
         }
 

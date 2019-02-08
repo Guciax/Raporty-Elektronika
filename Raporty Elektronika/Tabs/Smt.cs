@@ -9,11 +9,11 @@ using Raporty_Elektronika.Tools;
 
 namespace Raporty_Elektronika.DataStructure
 {
-    public class MainOrderStructure: MST.MES.OrderStructureByOrderNo.AllOrdersByProcess
+    public class MainOrderStructure: MST.MES.OrderStructureByOrderNo.dataByProcess
     {
-        private readonly OrderStructureByOrderNo.AllOrdersByProcess _sqlObject;
+        private readonly OrderStructureByOrderNo.dataByProcess _sqlObject;
 
-        public MainOrderStructure(MST.MES.OrderStructureByOrderNo.AllOrdersByProcess sqlObject) : base()
+        public MainOrderStructure(MST.MES.OrderStructureByOrderNo.dataByProcess sqlObject) : base()
         {
             _sqlObject = sqlObject;
         }

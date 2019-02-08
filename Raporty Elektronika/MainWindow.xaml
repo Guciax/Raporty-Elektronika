@@ -19,7 +19,7 @@
 
             </TabControl.Resources>
             <!--ZLECENIE -->
-            <TabItem Background="#1ABC9C" Foreground="White" Header="ZLECENIE" >
+            <TabItem Header="ZLECENIE" >
                 <Grid Background="#FFE5E5E5">
                     <TabControl>
                         <TabItem Header="Szczegółowe dane zlecenia"/>
